@@ -1,5 +1,6 @@
 {% extends "base.jinja" %}
 
+{% block title %}{% if query %}{{query}} 🔎 {% endif %}{% endblock %}
 {% block node_count %}{{node_count}}{% endblock %}
 {% block channel_count %}{{channel_count}}{% endblock %}
 {% block query %}{{query or ''}}{% endblock %}
