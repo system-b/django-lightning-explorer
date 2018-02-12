@@ -1,7 +1,7 @@
 raito-lightning
 ===============
 
-Django based simple lightning explorer [raito-lightning-demo](http://raito.systemb.co/).
+A lightning network explorer based on Django. [Demo](http://raito.systemb.co/).
 
 # INSTALL and RUN
     git clone https://github.com/system-b/raito-lightning.git
