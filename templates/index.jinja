@@ -1,0 +1,66 @@
+{% extends "base.jinja" %}
+
+{% block node_count %}{{node_count}}{% endblock %}
+{% block channel_count %}{{channel_count}}{% endblock %}
+{% block query %}{{query or ''}}{% endblock %}
+
+{% block content %}
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>GEO</th>
+				<th>ALIAS</th>
+				<th>ID</th>
+				<th>CHANNELS</th>
+				<th>LAST ACTIVITY</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for node in node_list %}
+				<tr>
+					<td>
+						{{node.get_geo()}}
+					</td>
+					<td>
+						<a href="/node/{{node.nodeid}}"><b>{{node.alias}}</b></a>
+					</td>
+					<td>
+						{{node.nodeid}}
+					</td>
+					<td class="text-center">
+						<b>{{node.get_channel_count()}}</b>
+					</td>
+					<td>
+						{{node.last_timestamp}}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	{% if pagination.has_prev or pagination.has_next %}
+	<nav>
+		<ul class="pagination pagination-lg">
+		{% if pagination.has_prev %}
+			<li><a href="?page={{ pagination.page - 1
+			}}">&laquo;</a></li>
+		{% endif %}
+		{%- for page in pagination.iter_pages() %}
+			{% if page %}
+				{% if page != pagination.page %}
+					<li><a href="?page={{page}}">{{page}}</a></li>
+				{% else %}
+					<li class="active"><a href="?page={{page}}">{{page}}</a></li>
+				{% endif %}
+			{% else %}
+				<li><a>...</a></li>
+			{% endif %}
+		{%- endfor %}
+		{% if pagination.has_next %}
+			<li><a href="?page={{ pagination.page + 1
+			}}">&raquo;</a></li>
+		{% endif %}
+		</ul>
+	</nav>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,202 @@
+/*!
+ * Start Bootstrap - Round About HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+/*
+@import url(https://fonts.googleapis.com/css?family=Play:400,700&subset=latin,cyrillic,cyrillic-ext);
+@import url(https://fonts.googleapis.com/css?family=Exo+2:400,700&subset=latin,cyrillic);
+*/
+@import url('https://fonts.googleapis.com/css?family=Play:400,700');
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+html {
+    /*background: url(/static/images/bg.jpg) no-repeat center center fixed; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+* {
+    border-radius: 0px !important;
+}
+
+body {
+    font-family: 'Play' !important;
+}
+
+.header {
+    margin-top: 50px;
+}
+
+.logo {
+    font-family: 'Audiowide', cursive;
+    font-size: 35px;
+    color: #454545;
+    margin:auto;
+    margin-top: -30px;
+}
+
+.main {
+	min-height: 300px;
+    margin-top: 15px;
+}
+
+nav {
+	text-align: center;
+}
+
+.track-data {
+	padding-left: 20px;
+}
+
+img.cover {
+	padding-top: 25px;
+	width: 100%;
+}
+
+img.album-cover {
+	padding-top: 25px;
+	width: 100%;
+}
+
+.track-item {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #bbb;
+}
+
+.album-item {
+	padding-bottom: 20px;
+}
+
+.track-description {
+	font-size: 20px;
+	width: 100%;
+}
+
+td.table-param-name {
+    text-align: right;
+    width: 150px;
+    padding-right: 20px;
+	font-weight: normal !important;
+}
+
+td {
+	/*font-weight: bold;*/
+}
+
+.btn-download {
+	/*margin-top: 10px;*/
+	margin-bottom: 20px;
+}
+
+.btn-play {
+	margin-left: 20px;
+	margin-bottom: 20px;
+	/*margin-top: 10px;*/
+}
+
+
+.playa input[type="range"] {
+  background-color: #ddd;
+  border: 1px solid #bbb;
+  border-radius: 0.5em;
+  opacity: 0.5;
+  height: 1em;
+  top: 2px;
+  position: relative;
+}
+
+.playa  .thumbnail  {
+    width:100%;
+}
+
+/* sliders and buttons need a uniform height */
+.playa .btn-group .btn {
+    display:inline-block;
+    float:none;
+    height: 2.2em;
+}
+
+/*  contains the attribution link */
+.playa .row:nth-child(4) {
+  overflow: hidden;
+}
+
+/* Acknowledgements:
+To Glyphicons (http://glyphicons.com/) for the Halflings glyphs font */
+
+/* .spin is used to rotate glyphicon glyphicon-refresh */
+.spin {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#player {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 9999;
+	border-bottom: 2px solid #5db85b !important;
+	opacity: 0.85;
+}
+
+
+.header a:hover {
+	text-decoration: none;
+	color: #bbb !important;
+}
+
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+	.logo {
+		text-align: center;
+	}
+	
+	.copy div {
+		float: none !important;
+		text-align: center !important;
+	}
+}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) {
+	.logo {
+		font-sie: 40px;
+	}
+}

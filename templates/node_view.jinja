@@ -1,0 +1,51 @@
+{% extends "base.jinja" %}
+
+{% block node_count %}{{node_count}}{% endblock %}
+{% block channel_count %}{{channel_count}}{% endblock %}
+{% block query %}{{query or ''}}{% endblock %}
+
+{% block content %}
+	<h1>{{node.get_geo()}} {{node.alias}} <small>channels: <b>{{node.get_channel_count()}}</b></small>, <small>addreses: <b>{{node.get_address_count()}}</b></small></h1>
+	<h4>nodeid: <b>{{node.nodeid}}</b></h4>
+	<div class="col-md-4">
+		0x{{node.color}}
+	{% for address in node.get_address_list()[:1] %}
+		<img width="100%" class="float-right" src="https://maps.googleapis.com/maps/api/staticmap?center={{address.latitude}},{{address.longitude}}&zoom=5&size=400x400&markers=size:large%7Ccolor:0x{{node.color}}%7Clabel:.%7C{{address.latitude}},{{address.longitude}}&key=AIzaSyCOCU6Yp8rBiGL1a8yTE0UcxN7SNATblRY{# &style=element:labels|visibility:off&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true #}">
+	{% endfor %}
+	</div>
+	<div class="col-md-8">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>channel_id</th>
+				<th>destination node</th>
+				<th>delay</th>
+				<th>public</th>
+				<th>active</th>
+				<th>last update</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for channel in node.get_channel_list() %}
+			<tr>
+				<td>{{channel.short_channel_id}}</td>
+				<td><a href="/node/{{channel.destination_node.nodeid}}">{{channel.destination_node.alias}}</a></td>
+				<td>{{channel.delay}}</td>
+				<td class="text-center" style="color:{{'green' if channel.public else 'red'}};"><i class="fa fa-{{'check' if channel.public else 'close'}}"></i></td>
+				<td class="text-center" style="color:{{'green' if channel.active else 'red'}};"><i class="fa fa-{{'check' if channel.active else 'close'}}"></i></td>
+				<td>{{channel.last_update}}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	</div>
+	
+{% endblock %}
+
+
+{# 
+https://maps.googleapis.com/maps/api/staticmap?center=Australia&size=640x400&style=element:labels|visibility:off&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyCOCU6Yp8rBiGL1a8yTE0UcxN7SNATblRY
+
+
+https://maps.googleapis.com/maps/api/staticmap?center=40.718217,-73.998284&zoom=8&size=400x400&markers=color:0x00ff00%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyCOCU6Yp8rBiGL1a8yTE0UcxN7SNATblRY
+ #}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta name="description" content="{% block description %}{% endblock %}">
+
+
+    <meta property="og:title" content="{% block meta_og_title %}{% endblock %} ">
+    <meta property="og:description" content="{% block meta_og_description %}{% endblock %}">
+    <meta property="og:site_name" content="{% block meta_og_site_name %}{% endblock %}">
+    <meta property="og:url" content="{% block meta_og_url %}/{% endblock %}">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+    <title>{% block title %}{% endblock %} RAITO LIGHTNING EXPLORER</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/static/css/main.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<meta name="referrer" content="no-referrer"> <!-- don't send HTTP referer for privacy purpose and to use Google Maps Geocoding API without key -->
+
+    {# <link rel="shortcut icon" href="/static/images/favicon.ico"> #}
+</head>
+<body>
+    <div class="container header">
+        <div class="col-md-12">
+            <a href="/"><div class="text-center logo">RAITO LIGHTNING EXPLORER [TESTNET]</div></a>
+            <a href="/">NODES</a>: <b>{% block node_count %}{% endblock %}</b>
+			CHANNELS: <b>{% block channel_count %}{% endblock %}</b>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="input-group input-group-lg">
+                <input type="text" id="search_query" class="form-control" placeholder="Search by node id, node alias  or channel id..." value="{% block query %}{% endblock %}">
+                <span class="input-group-btn">
+                    <button id="search_submit" class="btn btn-default" type="button">🔎</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container main">
+        <div class="col-md-12">
+            {% block breadcrumb %}
+
+            {% endblock %}
+
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+        <footer>
+            <div class="row">
+            </div>
+        </footer>
+    </div>
+    <div class="container copy" style="margin-bottom: 20px;">
+    	
+        {# <div class="pull-left">
+        	<p>&copy; 2018 by </p>
+        </div> #}
+    </div>
+
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <script src="/static/js/responsive-paginate.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".pagination").rPage();
+            $('#search_submit').click(function(event) {
+                var query = $('#search_query').val().replace(/\s/g, '_');;
+                var encoded_query = encodeURIComponent(query);
+                window.location = '/search/'+encoded_query
+
+            })
+            $('#search_query').keypress(function(event) {
+                if(event.which == 13) {
+                    $('#search_submit').click()
+                }
+            })
+		})
+	</script>
+</body>
+</html>
