@@ -10,4 +10,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^search/(?P<query>.*)$', network.index),
     re_path(r'^node/(?P<nodeid>.*)$', network.node_view),
+    re_path(r'^sitemap\.xml$', network.sitemap),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
