@@ -34,7 +34,7 @@
 				<td>{{channel.delay}}</td>
 				<td class="text-center" style="color:{{'green' if channel.public else 'red'}};"><i class="fa fa-{{'check' if channel.public else 'close'}}"></i></td>
 				<td class="text-center" style="color:{{'green' if channel.active else 'red'}};"><i class="fa fa-{{'check' if channel.active else 'close'}}"></i></td>
-				<td>{{channel.last_update}}</td>
+				<td>{{channel.get_naturaltime()}}</td>
 			</tr>
 		{% endfor %}
 		</tbody>

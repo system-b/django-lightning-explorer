@@ -1,3 +1,5 @@
+import humanize
+
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -12,6 +14,9 @@ class Node(models.Model):
 	
 	last_timestamp = models.DateTimeField(null=True, blank=True)
 
+	def get_naturaltime(self):
+		return humanize.naturaltime(self.last_timestamp)
+
 	def get_name(self):
 		return self.alias
 
@@ -19,7 +24,7 @@ class Node(models.Model):
 		return Channel.objects.filter(source_node=self).count()
 
 	def get_channel_list(self):
-		return Channel.objects.filter(source_node=self)
+		return Channel.objects.filter(source_node=self).order_by('-last_update')
 
 	def get_address_list(self):
 		return Address.objects.filter(node=self)
@@ -92,6 +97,9 @@ class Channel(models.Model):
 	fee_per_millionth = models.IntegerField(default=0, null=True, blank=True)
 	base_fee_millisatoshi = models.IntegerField(default=0, null=True, blank=True)
 	delay = models.IntegerField(default=0, null=True, blank=True)
+	
+	def get_naturaltime(self):
+		return humanize.naturaltime(self.last_update)
 	
 	def get_name(self):
 		return str(self.id)
