@@ -3,6 +3,8 @@ raito-lightning
 
 A lightning network explorer based on Django. [Demo](http://raito.systemb.co/).
 
+You will need bitcoind (https://github.com/bitcoin/bitcoin) and c-lightning (https://github.com/ElementsProject/lightning) running, fully synched. 
+
 # INSTALL and RUN
     git clone https://github.com/system-b/raito-lightning.git
     cd raito-lightning/
