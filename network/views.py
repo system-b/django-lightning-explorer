@@ -15,7 +15,7 @@ def index(request, query=False):
 		try:
 			node = Node.objects.get(Q(nodeid=query) | Q(alias=query))
 			
-			return redirect('/node/%s' % node.nodeid)
+			return redirect(node.get_url())
 		except Exception as e:
 			node_query = Node.objects.filter(Q(nodeid__icontains=query) | Q(alias__icontains=query))
 			
@@ -53,3 +53,17 @@ def node_view(request, nodeid):
 		'query': nodeid,	
 		'node': node
 	})
+	
+def sitemap(request):
+	location_list = [
+		'https://'+settings.ALLOWED_HOSTS[0],
+	]
+
+	node_list = Node.objects.all()
+
+	for _ in node_list:
+		location_list.append('https://'+settings.ALLOWED_HOSTS[0]+_.get_url())
+
+	return render(request, 'sitemap.xml', dict(
+		location_list=location_list,
+	), content_type="application/xhtml+xml")

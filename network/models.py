@@ -20,6 +20,9 @@ class Node(models.Model):
 	def get_name(self):
 		return self.alias
 
+	def get_url(self):
+		return '/node/%s' % self.nodeid
+
 	def get_channel_count(self):
 		return Channel.objects.filter(source_node=self).count()
 

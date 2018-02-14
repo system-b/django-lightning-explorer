@@ -25,7 +25,7 @@ SECRET_KEY = ')n6_91mh3hevd%c@anccpy8l+(7h$94j%%j6d#xfzrsh35@9p='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['128.199.234.109', 'raito.systemb.co']
+ALLOWED_HOSTS = ['raito-testnet.systemb.co', '128.199.234.109', 'raito.systemb.co']
 
 
 # Application definition
