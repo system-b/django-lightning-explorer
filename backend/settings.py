@@ -29,7 +29,6 @@ ALLOWED_HOSTS = ['raito-testnet.systemb.co', '128.199.234.109', 'raito.systemb.c
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
