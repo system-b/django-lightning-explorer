@@ -54,6 +54,21 @@ def node_view(request, nodeid):
 		'node': node
 	})
 	
+
+def map(request):
+	node_count = Node.objects.all().count()
+	channel_count = Channel.objects.all().count()
+
+	node_list = Node.objects.all().order_by('-last_timestamp')[:1000]
+	channel_list = Channel.objects.filter(active=True).order_by('-last_update')[:300]
+	
+	return render(request, 'map.jinja', {
+		'node_count': node_count,	
+		'channel_count': channel_count,	
+		'node_list': node_list,	
+		'channel_list': channel_list,	
+	})
+	
 def sitemap(request):
 	location_list = [
 		'https://'+settings.ALLOWED_HOSTS[0],
@@ -67,3 +82,9 @@ def sitemap(request):
 	return render(request, 'sitemap.xml', dict(
 		location_list=location_list,
 	), content_type="application/xhtml+xml")
+
+def point(request):
+	color = request.GET.get('color', 'red')
+	return render(request, 'point.svg', dict(
+		color=color,
+	), content_type="image/svg+xml")
